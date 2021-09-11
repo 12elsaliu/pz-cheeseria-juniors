@@ -11,7 +11,7 @@ type PurchaseType = {
 const getPurchases = async():Promise<PurchaseType[]> => await (await fetch(`api/purchases`)).json()
 
 const RecentPurchases: React.FC = () => {
-  const [purchases, setPurchases] = useState([])
+  const [purchases, setPurchases] = useState([] as PurchaseType[])
   
   useEffect(() => {
     const loadPurchases = async () => {

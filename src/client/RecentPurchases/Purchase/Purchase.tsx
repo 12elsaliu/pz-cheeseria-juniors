@@ -1,6 +1,6 @@
 import { Wrapper } from './Purchase.styles';
 import { CartItemType } from '../../App';
-const { DateTime } = require("luxon");
+import { DateTime } from 'luxon'
 
 type PurchaseType = {
   createdAt: string;

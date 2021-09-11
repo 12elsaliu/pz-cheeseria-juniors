@@ -5,7 +5,22 @@ const cheeses = require('./data/cheeses.json');
 const router = express.Router();
 router.use(express.json())
 
-const purchases = [];
+type PurchaseType = {
+  createdAt: Date;
+  items: CartItemType[]
+}
+
+type CartItemType = {
+  id: number;
+  category: string;
+  description: string;
+  image: string;
+  price: number;
+  title: string;
+  amount: number;
+};
+
+const purchases: PurchaseType[] = [];
 
 router.get('/api/cheeses', (req, res, next) => {
   res.json(cheeses);
