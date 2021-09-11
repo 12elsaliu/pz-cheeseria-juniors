@@ -151,7 +151,6 @@ const App = () => {
           <div className='purchase'>
             <h3> You have successfully placed your order!</h3>
           </div>
-          
         </Dialog>
       </Drawer>
 

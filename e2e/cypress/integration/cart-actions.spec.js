@@ -14,4 +14,12 @@ context('Cart Actions', () => {
 
   })
 
+  it('Purchase items', () => {
+    cy.get('[data-cy=badge-count]').click();
+    cy.get('[data-cy=purchase-items]').click();
+
+    cy.contains('You have successfully placed your order!') 
+
+  })
+
 })

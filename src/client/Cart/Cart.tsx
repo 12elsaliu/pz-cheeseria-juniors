@@ -30,13 +30,13 @@ const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart, processPu
       ))}
       <h2>Total: ${calculateTotal(cartItems).toFixed(2)}</h2>
 
-      {/* Add Purchase button */}
       <div className='button'>
         <Button
           size='large'
           disableElevation
           variant='contained'
           onClick={processPurchase}
+          data-cy='purchase-items'
         > Purchase </Button>
       </div>
 
