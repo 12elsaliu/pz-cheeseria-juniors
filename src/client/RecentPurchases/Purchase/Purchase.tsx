@@ -19,7 +19,7 @@ const Purchase: React.FC<{purchase: PurchaseType}> = ({purchase: { createdAt, it
       <h4>Purchase time: {localTime}</h4>
       {items.map(item => {
         return <div>
-          <h4>Purchased item: {item.title}</h4>
+          <h4>Item: {item.title}</h4>
           <p>Unit price: {item.price}</p>
           <p>Units purchased: {item.amount}</p>
         </div> 

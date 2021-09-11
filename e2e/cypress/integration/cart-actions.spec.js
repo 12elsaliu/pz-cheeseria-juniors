@@ -18,7 +18,7 @@ context('Cart Actions', () => {
     cy.get('[data-cy=badge-count]').click();
     cy.get('[data-cy=purchase-items]').click();
 
-    cy.contains('You have successfully placed your order!') 
+    cy.contains('You have successfully placed your order.') 
 
   })
 

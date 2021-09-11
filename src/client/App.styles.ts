@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
 
   .purchase{
     width:300px;
-    height:100px;
+    height:200px;
     padding:20px;
   }
 `;

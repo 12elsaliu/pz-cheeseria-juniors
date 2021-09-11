@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
+import Button from '@material-ui/core/Button';
 // Components
 import Item from './Cart/Item/Item';
 import Cart from './Cart/Cart';
@@ -148,8 +149,11 @@ const App = () => {
         />
 
         <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-          <div className='purchase'>
-            <h3> You have successfully placed your order!</h3>
+          <div style={{padding:20, textAlign:'center'}}>
+            <h3> You have successfully placed your order. </h3>
+            <Button onClick={handleClose} size='small' disableElevation variant='contained'>
+              Back   
+            </Button>
           </div>
         </Dialog>
       </Drawer>
