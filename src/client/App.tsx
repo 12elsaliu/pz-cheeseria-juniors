@@ -40,13 +40,10 @@ const App = () => {
   );
   console.log(data);
   const [open, setOpen] = React.useState(false);
-
-  //Open dialog
+  const [sent, setSent] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
-
-  //Close dialog
   const handleClose = () => {
     setOpen(false);
   };
@@ -85,14 +82,23 @@ const App = () => {
   };
 
   const processPurchase = async () =>{
-    const res = await fetch('api/purchases',{
-      method: 'POST',
-      headers:{'Content-Type': 'application/json'},
-      body:JSON.stringify(cartItems)
-    })
-    
-    if(res.status===200){
-      setCartItems([])
+    if(cartItems.length!==0){
+      console.log(cartItems,'item')
+      const res = await fetch('api/purchases',{
+        method: 'POST',
+        headers:{'Content-Type': 'application/json'},
+        body:JSON.stringify(cartItems)
+      })
+      if(res.status===200 ){
+        //Reset the cart for next purchase
+        setCartItems([])
+        handleClickOpen()
+        //Sent state will determine the corresponding message to display when the data has successfully sent to the server.
+        setSent(true)
+      }
+    }else{
+       // When there is no item in the cart, nothing has been sent to the server. Display the corresponding message.
+      setSent(false)
       handleClickOpen()
     }
   }
@@ -150,7 +156,10 @@ const App = () => {
 
         <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
           <div style={{padding:20, textAlign:'center'}}>
-            <h3> You have successfully placed your order. </h3>
+            {sent
+            ?<h3> You have successfully placed your order. </h3>
+            :<h3> Can't place the order as there is no item in cart.</h3>
+            } 
             <Button onClick={handleClose} size='small' disableElevation variant='contained'>
               Back   
             </Button>
