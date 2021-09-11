@@ -19,7 +19,10 @@ export const Wrapper = styled.div`
 
   img {
     max-width: 80px;
+    max-height:80px;
     object-fit: cover;
     margin-left: 40px;
+    margin-top:20px;
+    border-radius:5px;
   }
 `;
