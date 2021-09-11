@@ -46,11 +46,13 @@ const Item: React.FC<Props> = ({ item, handleAddToCart }) => {
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
  
           <div style={{padding:30}}>
-            <img src={item.image} alt={item.title} style={{maxHeight:250, borderRadius:5}} />
-            <h3>{item.title}</h3>
-            <h4>${item.price}</h4>
-            <h4>Cheese category: {item.category}</h4>
-            <p>{item.description}</p>
+
+              <img src={item.image} alt={item.title} style={{maxHeight:200, borderRadius:5, float:'left', marginRight:20, marginBottom:20}} />
+              <h3>{item.title}</h3>
+              <h4>${item.price}</h4>
+
+            <h4>Category: {item.category}</h4>
+            <p style={{clear:'both'}}>{item.description}</p>
           </div>
 
         <DialogActions>
