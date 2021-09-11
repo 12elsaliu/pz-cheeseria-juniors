@@ -25,12 +25,4 @@ context('Cart Actions', () => {
 
   })
 
-  it('Purchase without adding item first', () => {
-    cy.get('[data-cy=badge-count]').click();
-    cy.get('[data-cy=purchase-items]').click();
-
-    cy.contains("Can't place the order as there is no item in cart.") 
-
-  })
-
 })

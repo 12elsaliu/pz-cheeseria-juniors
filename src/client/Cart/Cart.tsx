@@ -37,6 +37,7 @@ const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart, processPu
           variant='contained'
           onClick={processPurchase}
           data-cy='purchase-items'
+          disabled={cartItems.length === 0}
         > Purchase </Button>
       </div>
 
