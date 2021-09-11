@@ -3,6 +3,7 @@ import { useQuery } from 'react-query';
 // Components
 import Item from './Cart/Item/Item';
 import Cart from './Cart/Cart';
+import RecentPurchases from './RecentPurchases/RecentPurchases'
 import Drawer from '@material-ui/core/Drawer';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Grid from '@material-ui/core/Grid';
@@ -31,6 +32,7 @@ const getCheeses = async (): Promise<CartItemType[]> =>
 const App = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([] as CartItemType[]);
+  const [historyOpen, setHistoryOpen] =useState(false)
   const { data, isLoading, error } = useQuery<CartItemType[]>(
     'cheeses',
     getCheeses
@@ -82,7 +84,7 @@ const App = () => {
   };
 
   const processPurchase = async () =>{
-    const res = await fetch('api/purchase',{
+    const res = await fetch('api/purchases',{
       method: 'POST',
       headers:{'Content-Type': 'application/json'},
       body:JSON.stringify(cartItems)
@@ -109,7 +111,7 @@ const App = () => {
             justify="space-between"
             alignItems="center"
           >
-            <StyledButton>
+            <StyledButton onClick={()=> setHistoryOpen(true)}>
               <RestoreIcon />
               <Typography variant="subtitle2">
                 Recent Purchases
@@ -151,6 +153,10 @@ const App = () => {
           </div>
           
         </Dialog>
+      </Drawer>
+
+      <Drawer anchor='left' open={historyOpen} onClose={() => setHistoryOpen(false)}>
+        <RecentPurchases/>
       </Drawer>
 
       <Grid container spacing={3}>
