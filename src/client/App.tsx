@@ -12,6 +12,7 @@ import Badge from '@material-ui/core/Badge';
 // Styles
 import { Wrapper, StyledButton, StyledAppBar, HeaderTypography } from './App.styles';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import Dialog from '@material-ui/core/Dialog';
 // Types
 export type CartItemType = {
   id: number;
@@ -35,6 +36,17 @@ const App = () => {
     getCheeses
   );
   console.log(data);
+  const [open, setOpen] = React.useState(false);
+
+  //Open dialog
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  //Close dialog
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const getTotalItems = (items: CartItemType[]) =>
     items.reduce((ack: number, item) => ack + item.amount, 0);
@@ -68,6 +80,20 @@ const App = () => {
       }, [] as CartItemType[])
     );
   };
+
+  const processPurchase = async () =>{
+    const res = await fetch('api/purchase',{
+      method: 'POST',
+      headers:{'Content-Type': 'application/json'},
+      body:JSON.stringify(cartItems)
+    })
+    
+    if(res.status===200){
+      setCartItems([])
+      handleClickOpen()
+    }
+  }
+  
 
   if (isLoading) return <LinearProgress />;
   if (error) return <div>Something went wrong ...</div>;
@@ -116,7 +142,15 @@ const App = () => {
           cartItems={cartItems}
           addToCart={handleAddToCart}
           removeFromCart={handleRemoveFromCart}
+          processPurchase={processPurchase}
         />
+
+        <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+          <div className='purchase'>
+            <h3> You have successfully placed your order!</h3>
+          </div>
+          
+        </Dialog>
       </Drawer>
 
       <Grid container spacing={3}>

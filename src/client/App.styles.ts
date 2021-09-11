@@ -4,6 +4,12 @@ import { AppBar, Typography, withStyles } from '@material-ui/core';
 
 export const Wrapper = styled.div`
   margin: 40px;
+
+  .purchase{
+    width:300px;
+    height:100px;
+    padding:20px;
+  }
 `;
 
 // export const StyledButton = styled(IconButton)`

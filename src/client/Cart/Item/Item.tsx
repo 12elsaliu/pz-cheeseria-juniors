@@ -43,7 +43,6 @@ const Item: React.FC<Props> = ({ item, handleAddToCart }) => {
           data-cy={`add-to-cart-${item.id}`}>Add to cart</Button>
       </Wrapper>
 
-      {/* Content of the Dialog */}
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <div style={{padding:30}}>
           <div style={{display:'flex', justifyContent:'center'}}>

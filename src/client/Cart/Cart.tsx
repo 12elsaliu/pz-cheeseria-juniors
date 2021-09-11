@@ -3,15 +3,18 @@ import { Wrapper } from './Cart.styles';
 import { CartItemType } from '../App';
 import Button from '@material-ui/core/Button';
 
+
 type Props = {
   cartItems: CartItemType[];
   addToCart: (clickedItem: CartItemType) => void;
   removeFromCart: (id: number) => void;
+  processPurchase: () => Promise<void>;
 };
 
-const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
+const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart, processPurchase }) => {
   const calculateTotal = (items: CartItemType[]) =>
     items.reduce((ack: number, item) => ack + item.amount * item.price, 0);
+
 
   return (
     <Wrapper>
@@ -33,6 +36,7 @@ const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
           size='large'
           disableElevation
           variant='contained'
+          onClick={processPurchase}
         > Purchase </Button>
       </div>
 
