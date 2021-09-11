@@ -1,12 +1,6 @@
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
-import React, {useState} from 'react';
+import React from 'react';
 // Types
 import { CartItemType } from '../../App';
 // Styles
@@ -33,6 +27,7 @@ const Item: React.FC<Props> = ({ item, handleAddToCart }) => {
 
   return (
     <div>
+      {/* Click on the card and open the dialog */}
       <Wrapper onClick={handleClickOpen}>
         <img src={item.image} alt={item.title} />
         <div>
@@ -40,10 +35,15 @@ const Item: React.FC<Props> = ({ item, handleAddToCart }) => {
           <h3>${item.price}</h3>
         </div>
         <Button
-          onClick={() => handleAddToCart(item)}
+          onClick={(event) => {
+            //Avoid from triggering the parent div click event, to keep the functionality of Add Cart button on the card.
+            event.stopPropagation()
+            handleAddToCart(item)
+          }}
           data-cy={`add-to-cart-${item.id}`}>Add to cart</Button>
       </Wrapper>
 
+      {/* Content of the Dialog */}
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <div style={{padding:30}}>
           <div style={{display:'flex', justifyContent:'center'}}>
