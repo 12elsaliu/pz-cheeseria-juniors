@@ -5,6 +5,7 @@ import React from 'react';
 import { CartItemType } from '../../App';
 // Styles
 import { Wrapper } from './Item.styles';
+import DialogActions from '@material-ui/core/DialogActions';
 
 type Props = {
   item: CartItemType;
@@ -27,39 +28,42 @@ const Item: React.FC<Props> = ({ item, handleAddToCart }) => {
 
   return (
     <div>
-      {/* Click on the card and open the dialog */}
-      <Wrapper onClick={handleClickOpen}>
-        <img src={item.image} alt={item.title} />
-        <div>
-          <h3>{item.title}</h3>
-          <h3>${item.price}</h3>
-        </div>
-        <Button
-          onClick={(event) => {
-            //Avoid from triggering the parent div click event, to keep the functionality of Add Cart button on the card.
-            event.stopPropagation()
-            handleAddToCart(item)
-          }}
-          data-cy={`add-to-cart-${item.id}`}>Add to cart</Button>
-      </Wrapper>
+    <Wrapper onClick={handleClickOpen}>
+      <img src={item.image} alt={item.title} />
+      <div>
+        <h3>{item.title}</h3>
+        <h3>${item.price}</h3>
+      </div>
+      <Button
+        onClick={(event) => {
+          //Avoid from triggering the parent div click event, to keep the functionality of Add Cart button on the card.
+          event.stopPropagation()
+          handleAddToCart(item)
+        }}
+        data-cy={`add-to-cart-${item.id}`}>Add to cart</Button>
+  </Wrapper>
 
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-        <div style={{padding:30}}>
-          <div style={{display:'flex', justifyContent:'center'}}>
-            <img src={item.image} alt={item.title} style={{maxHeight:200}}/>
+ 
+          <div style={{padding:30}}>
+            <img src={item.image} alt={item.title} style={{maxHeight:250, borderRadius:5}} />
+            <h3>{item.title}</h3>
+            <h4>${item.price}</h4>
+            <h4>Cheese category: {item.category}</h4>
+            <p>{item.description}</p>
           </div>
-          <h3>{item.title}</h3>
-          <h4>${item.price}</h4>
-          <h4>Cheese category: {item.category}</h4>
-          <p>{item.description}</p>
-          <div style={{display:'flex', justifyContent:'center'}}>
-            <Button
-            onClick={() => handleAddToCart(item)}
-            data-cy={`add-to-cart-${item.id}`}>Add to cart</Button>
-          </div>
-        </div>
+
+        <DialogActions>
+          <Button onClick={handleClose} size='small' disableElevation variant='contained'>
+            Cancel    
+          </Button>
+          <Button onClick={() => handleAddToCart(item)} data-cy={`add-to-cart-${item.id}`} size='small' disableElevation variant='contained'>
+            Add to cart
+          </Button>
+        </DialogActions>
       </Dialog>
-    </div>
+      </div>
+    
   );
 }
 

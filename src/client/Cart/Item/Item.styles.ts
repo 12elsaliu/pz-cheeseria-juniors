@@ -24,4 +24,21 @@ export const Wrapper = styled.div`
     padding: 1rem;
     height: 100%;
   }
+
+  .center{
+    display:'flex';
+    justify-content:'center';
+    background-color:'blue';
+  }
+
+  .sized{
+    maxHeight:200px;
+  }
+
+  .container{
+    padding: 30px;
+    border-radius:0;
+    border: 1px solid black;
+
+  }
 `;
