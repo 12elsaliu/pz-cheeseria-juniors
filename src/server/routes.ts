@@ -20,6 +20,7 @@ type CartItemType = {
   amount: number;
 };
 
+//TODO: Instead of using variable, store the purchases in the database.
 const purchases: PurchaseType[] = [];
 
 router.get('/api/cheeses', (req, res, next) => {

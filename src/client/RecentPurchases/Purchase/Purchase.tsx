@@ -14,6 +14,7 @@ const Purchase: React.FC<{purchase: PurchaseType}> = ({purchase: { createdAt, it
   const calculateTotal = (items: CartItemType[]) =>
   items.reduce((ack: number, item) => ack + item.amount * item.price, 0);
 
+  //TODO: Click on the items in Recent Purchase to open the item description card.
   return (
     <Wrapper>
       <h4>Purchase time: {localTime}</h4>
